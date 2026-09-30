@@ -2,7 +2,7 @@
 
 一个可以长期写作的中文静态博客。使用 Astro，生成纯 HTML/CSS；不需要数据库、后台服务或 API Key。支持 GitHub Pages，也可以把 `dist/` 部署到其他静态托管服务。
 
-现已收录一篇保研经历文章。三篇演示文章保存在 `templates/examples/`，不会发布。
+现已收录保研经历与 AI 时代的思考文章。三篇演示文章保存在 `templates/examples/`，不会发布。
 
 ## 1. 本地运行
 
