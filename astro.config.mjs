@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
-// GitHub Actions supplies these automatically; local builds use the root path.
-const site = process.env.SITE_URL || undefined;
+// GitHub Actions supplies these automatically; default to the public HTTPS site.
+const site = (process.env.SITE_URL || "https://blogs.icelon.top/").replace(/^http:/, "https:");
 const base = process.env.BASE_PATH || "/";
 
 export default defineConfig({

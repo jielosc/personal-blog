@@ -12,7 +12,7 @@ for (const post of posts) {
   <header class="page-heading"><h1>归档<span class="heading-period">。</span></h1><p>{posts.length} 篇文章，按年份排列。</p></header>
   <div class="archive">
     {[...groups].map(([year, entries]) => <section class="archive-group">
-      <h2>{year}<small>{entries.length}</small></h2>
+      <h2>{year} <small>{entries.length} 篇</small></h2>
       <div>{entries.map(post => <a class="archive-row" href={postUrl(post.id)}>
         <time datetime={post.data.date?.toISOString()}>{post.data.date ? formatDate(post.data.date).slice(5) : '—'}</time>
         <span>{titleOf(post)}</span>

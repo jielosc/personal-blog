@@ -267,6 +267,7 @@ main {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 .toc summary {
   cursor: pointer;

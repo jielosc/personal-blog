@@ -114,7 +114,7 @@ SITE_URL=https://example.github.io BASE_PATH=/my-blog npm run build
 BASE_PATH=/my-blog npm run preview
 ```
 
-然后访问终端地址下的 `/my-blog/`。普通本地构建不用设置这些变量；不设置 `SITE_URL` 时不输出 canonical 链接，避免误填站点域名。
+然后访问终端地址下的 `/my-blog/`。普通本地构建默认使用正式站点 `https://blogs.icelon.top/`；部署到其他域名时设置 `SITE_URL`。canonical、Open Graph、sitemap、robots 与 RSS 共用该地址，并统一使用 HTTPS。
 
 参考：[Astro 官方 GitHub Pages 部署文档](https://docs.astro.build/en/guides/deploy/github/)。
 

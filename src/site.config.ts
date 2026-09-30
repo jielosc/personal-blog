@@ -2,7 +2,7 @@
 export const site = {
   title: "纸间",
   author: "jielosc",
-  description: "一个个人博客。",
+  description: "关于 AI、计算机、学习，以及一些真实经历的记录。",
   tagline: "文章与笔记",
   introduction: "学习笔记、实践记录，还有一些日常随笔。",
   about: [

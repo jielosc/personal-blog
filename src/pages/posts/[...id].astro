@@ -19,11 +19,11 @@ const hasLeadingTitle = /^\s*#\s+.+(?:\r?\n|$)/.test(post.body || '');
     <div class="post-meta">
       {post.data.date && <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>}
       <span>{readingTime(post)} 分钟阅读</span>
-      <span class="tags">{post.data.tags.map(tag => <span>{tag}</span>)}</span>
+      {post.data.tags.length > 0 && <span class="tags">{post.data.tags.map(tag => <span>{tag}</span>)}</span>}
     </div>
     {post.data.description && <p>{post.data.description}</p>}
   </header>
-  {toc.length > 0 && <details class="toc"><summary>文章目录 <span>{toc.length}</span></summary><nav aria-label="文章目录"><ol>{toc.map(h => <li class:list={{ nested: h.depth === 3 }}><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav></details>}
+  {toc.length > 0 && <details class="toc"><summary>文章目录 <span>（{toc.length}）</span></summary><nav aria-label="文章目录"><ol>{toc.map(h => <li class:list={{ nested: h.depth === 3 }}><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav></details>}
   <article class:list={['prose', { 'has-leading-title': hasLeadingTitle }]}><Content /></article>
   {next && <footer class="article-end"><span>下一篇</span><a href={postUrl(next.id)}>{titleOf(next)}</a></footer>}
 </Base>
