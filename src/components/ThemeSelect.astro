@@ -1,0 +1,48 @@
+<div class="theme-control" hidden>
+  <label for="theme-select">外观</label>
+  <select id="theme-select" aria-label="外观主题">
+    <option value="system">跟随系统</option>
+    <option value="light">浅色</option>
+    <option value="dark">深色</option>
+  </select>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const select = document.querySelector<HTMLSelectElement>('#theme-select');
+  const control = document.querySelector<HTMLElement>('.theme-control');
+  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function applyTheme(preference: string) {
+    const theme = preference === 'system' ? (systemTheme.matches ? 'dark' : 'light') : preference;
+    root.dataset.themePreference = preference;
+    root.dataset.theme = theme;
+    if (select) select.value = preference;
+    document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute(
+      'content', theme === 'dark' ? '#16181d' : '#ffffff',
+    );
+  }
+
+  applyTheme(root.dataset.themePreference || 'system');
+  if (control) control.hidden = false;
+
+  select?.addEventListener('change', () => {
+    applyTheme(select.value);
+    try {
+      if (select.value === 'system') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', select.value);
+    } catch {
+      // Switching still works when browser storage is unavailable.
+    }
+  });
+
+  systemTheme.addEventListener('change', () => {
+    if (root.dataset.themePreference === 'system') applyTheme('system');
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== 'theme' && event.key !== null) return;
+    const preference = event.newValue;
+    applyTheme(preference === 'light' || preference === 'dark' ? preference : 'system');
+  });
+</script>

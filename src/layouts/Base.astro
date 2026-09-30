@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeSelect from '../components/ThemeSelect.astro';
 import { site } from '../site.config';
 import { url } from '../lib/posts';
 interface Props { title?: string; description?: string; active?: string; article?: boolean; noindex?: boolean; }
@@ -16,6 +17,22 @@ const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.sit
     <meta name="author" content={site.author} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#ffffff" />
+    <script is:inline>
+      // Resolve the theme before rendering, including on subsequent page loads.
+      (() => {
+        let preference = 'system';
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') preference = saved;
+        } catch {}
+        const theme = preference === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : preference;
+        document.documentElement.dataset.themePreference = preference;
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#16181d' : '#ffffff');
+      })();
+    </script>
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={article ? 'article' : 'website'} />
@@ -35,11 +52,14 @@ const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.sit
       <header class="site-header">
         <a class="brand" href={url()} aria-label={`${site.title}首页`}>{site.title}<span aria-hidden="true">.</span></a>
         <p class="site-description">{site.description}</p>
-        <nav aria-label="主导航">
-          <a href={url()} aria-current={active === 'home' ? 'page' : undefined}>文章</a>
-          <a href={url('archive/')} aria-current={active === 'archive' ? 'page' : undefined}>归档</a>
-          <a href={url('about/')} aria-current={active === 'about' ? 'page' : undefined}>关于</a>
-        </nav>
+        <div class="header-actions">
+          <nav aria-label="主导航">
+            <a href={url()} aria-current={active === 'home' ? 'page' : undefined}>文章</a>
+            <a href={url('archive/')} aria-current={active === 'archive' ? 'page' : undefined}>归档</a>
+            <a href={url('about/')} aria-current={active === 'about' ? 'page' : undefined}>关于</a>
+          </nav>
+          <ThemeSelect />
+        </div>
       </header>
       <main id="main" class:list={{ 'reading-page': article }}><slot /></main>
       <footer class="site-footer"><span>© {new Date().getUTCFullYear()} {site.title}. All rights reserved.</span><a href={url('about/')}>关于本站</a></footer>
