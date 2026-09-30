@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PostRow from '../components/PostRow.astro';
+import { publishedPosts, url } from '../lib/posts';
+import { site } from '../site.config';
+const posts = await publishedPosts();
+---
+<Base active="home">
+  <header class="page-heading home-heading">
+    <h1>最近的文章<span class="heading-period">。</span></h1>
+    <p>{site.introduction}</p>
+  </header>
+  <section class="post-list" aria-label="最近文章">
+    {posts.length ? posts.slice(0, 5).map(post => <PostRow post={post} />) : <p class="empty">还没有发布文章。</p>}
+  </section>
+  {posts.length > 0 && <div class="list-end"><a href={url('archive/')}>查看全部 {posts.length} 篇文章</a></div>}
+</Base>

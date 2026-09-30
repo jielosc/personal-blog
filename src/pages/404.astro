@@ -1,0 +1,5 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/posts';
+---
+<Base title="页面未找到" noindex><section class="page-heading not-found"><span class="error-code">404</span><h1>页面未找到</h1><p>这个地址没有对应的文章。</p><a href={url()}>返回首页</a></section></Base>

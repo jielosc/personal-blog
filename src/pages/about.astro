@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+---
+<Base title="关于" active="about">
+  <header class="page-heading"><h1>关于<span class="heading-period">。</span></h1></header>
+  <div class="prose about-body">{site.about.map(paragraph => <p>{paragraph}</p>)}</div>
+</Base>

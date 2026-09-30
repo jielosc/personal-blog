@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { publishedPosts, titleOf, postUrl, formatDate } from '../lib/posts';
+const posts = await publishedPosts();
+const groups = new Map<string, typeof posts>();
+for (const post of posts) {
+  const year = post.data.date?.getUTCFullYear().toString() || '未注明日期';
+  groups.set(year, [...(groups.get(year) || []), post]);
+}
+---
+<Base title="归档" active="archive">
+  <header class="page-heading"><h1>归档<span class="heading-period">。</span></h1><p>{posts.length} 篇文章，按年份排列。</p></header>
+  <div class="archive">
+    {[...groups].map(([year, entries]) => <section class="archive-group">
+      <h2>{year}<small>{entries.length}</small></h2>
+      <div>{entries.map(post => <a class="archive-row" href={postUrl(post.id)}>
+        <time datetime={post.data.date?.toISOString()}>{post.data.date ? formatDate(post.data.date).slice(5) : '—'}</time>
+        <span>{titleOf(post)}</span>
+      </a>)}</div>
+    </section>)}
+  </div>
+  {!posts.length && <p class="empty">还没有发布文章。</p>}
+</Base>
