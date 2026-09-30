@@ -198,6 +198,7 @@ main {
 .site-footer {
   grid-column: 2;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
   border-top: 1px solid var(--line);
@@ -475,6 +476,7 @@ main {
   .site-header {
     position: static;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
@@ -484,6 +486,7 @@ main {
   }
   .brand {
     font-size: 27px;
+    white-space: nowrap;
   }
   .site-description {
     display: none;

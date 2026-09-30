@@ -1,4 +1,4 @@
-# 纸间 · 个人博客
+# Ryan’s Notes · 个人博客
 
 一个可以长期写作的中文静态博客。使用 Astro，生成纯 HTML/CSS；不需要数据库、后台服务或 API Key。支持 GitHub Pages，也可以把 `dist/` 部署到其他静态托管服务。
 

@@ -42,7 +42,7 @@ const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.sit
         </nav>
       </header>
       <main id="main" class:list={{ 'reading-page': article }}><slot /></main>
-      <footer class="site-footer"><span>© {new Date().getUTCFullYear()} {site.title}</span><a href={url('about/')}>关于本站</a></footer>
+      <footer class="site-footer"><span>© {new Date().getUTCFullYear()} {site.title}. All rights reserved.</span><a href={url('about/')}>关于本站</a></footer>
     </div>
   </body>
 </html>

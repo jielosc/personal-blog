@@ -1,12 +1,12 @@
 // 博客名称与个人文案在这里修改。
 export const site = {
-  title: "纸间",
+  title: "Ryan’s Notes",
   author: "jielosc",
   description: "关于 AI、计算机、学习，以及一些真实经历的记录。",
   tagline: "文章与笔记",
   introduction: "学习笔记、实践记录，还有一些日常随笔。",
   about: [
-    "这里是纸间，一个个人博客。",
+    "这里是 Ryan’s Notes，一个个人博客。",
     "我会在这里整理学习笔记，记录做过的事情，偶尔也写一点日常。文章会随着新的理解继续修改。",
     "欢迎阅读。",
   ],
