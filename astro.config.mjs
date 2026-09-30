@@ -9,5 +9,8 @@ export default defineConfig({
   base,
   output: "static",
   trailingSlash: "always",
+  // Keep this small blog's CSS in each HTML page so styling does not depend
+  // on a separate asset request after a domain change or stale edge cache.
+  build: { inlineStylesheets: "always" },
   markdown: { shikiConfig: { theme: "github-light" } },
 });
