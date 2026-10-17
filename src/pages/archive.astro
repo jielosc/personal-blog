@@ -8,7 +8,7 @@ for (const post of posts) {
   groups.set(year, [...(groups.get(year) || []), post]);
 }
 ---
-<Base title="归档" active="archive">
+<Base title="文章归档" active="archive" description="Ryan’s Notes 的全部文章，按年份整理 AI 与计算机学习、保研经历、项目实践和个人思考，方便查找与回顾。">
   <header class="page-heading"><h1>归档<span class="heading-period">。</span></h1><p>{posts.length} 篇文章，按年份排列。</p></header>
   <div class="archive">
     {[...groups].map(([year, entries]) => <section class="archive-group">

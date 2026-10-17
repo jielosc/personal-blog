@@ -12,7 +12,7 @@ const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 const title = titleOf(post);
 const hasLeadingTitle = /^\s*#\s+.+(?:\r?\n|$)/.test(post.body || '');
 ---
-<Base title={title} description={excerptOf(post)} article>
+<Base title={title} description={excerptOf(post)} article publishedTime={post.data.date} modifiedTime={post.data.updated} tags={post.data.tags}>
   <div class="article-top"><a href={url()}>所有文章</a></div>
   <header class="article-heading">
     <h1>{title}</h1>

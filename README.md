@@ -136,3 +136,15 @@ public/                 图标和不需处理的静态资源
 .github/workflows/       GitHub Pages 自动构建部署流程
 astro.config.mjs         静态构建、站点地址和子路径
 ```
+
+
+### SEO 元信息
+
+首页与归档页有独立的搜索摘要；文章标题和 `description` 用于搜索及分享元信息。
+文章页自动输出 `BlogPosting` JSON-LD、发布日期和标签；首页输出 `WebSite` JSON-LD。
+如正文有实质更新，可在 frontmatter 添加 `updated: 2026-10-18`（填写真实更新日期），
+同步用于结构化数据、分享元信息和 sitemap 的 `lastmod`，不要在每次构建时刷新日期。
+未填写 `updated` 时省略修改日期，避免把发布日期误当作最后修改日期。
+
+部署后可在 Google Search Console 验证域名并提交 `https://blogs.icelon.top/sitemap.xml`，
+再检查首页和文章 URL 的索引状态。提交站点地图不保证收录或排名。
